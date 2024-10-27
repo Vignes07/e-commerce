@@ -23,5 +23,12 @@ app.use('/cart', cartRoutes)
 app.use('/orders', orderRoutes)
 app.use('/sendbird', sendbirdRoutes)
 
+app.get('/api/sendbird-credentials', (req, res) => {
+    res.json({
+        appId: process.env.SENDBIRD_APP_ID,
+        botId: process.env.SENDBIRD_BOT_ID,
+    });
+});
+
 // Start Server
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

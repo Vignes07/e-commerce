@@ -3,39 +3,73 @@ import { ChatAiWidget } from '@sendbird/chat-ai-widget';
 import '@sendbird/chat-ai-widget/dist/style.css';
 
 const ChatbotWidget = () => {
-    const APP_ID = import.meta.env.VITE_SENDBIRD_APP_ID;
-    const BOT_ID = import.meta.env.VITE_SENDBIRD_BOT_ID;
-
+    const [appId, setAppId] = useState('');
+    const [botId, setBotId] = useState('');
     const [userId, setUserId] = useState(''); // User ID
-    // const [sessionToken, setSessionToken] = useState(''); // JWT Token
-    //
-    // useEffect(() => {
-    //     // Fetch the JWT token from your backend
-    //     const fetchToken = async () => {
-    //         const response = await fetch('/api/get-jwt', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ userId: 'USER_ID' }), // Replace with actual user ID
-    //         });
-    //         const data = await response.json();
-    //         setSessionToken(data.token);
-    //     };
-    //
-    //     fetchToken();
-    // }, []);
-
     const sessionToken = localStorage.getItem('authToken');
+    const api = import.meta.env.VITE_API_URL;
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchSendbirdCredentials = async () => {
+            try {
+                const response = await fetch(`${api}/api/sendbird-credentials`);
+                const data = await response.json();
+                setAppId(data.appId);
+                setBotId(data.botId);
+                setLoading(false); // Stop loading after data is fetched
+            } catch (error) {
+                console.error('Error fetching Sendbird credentials:', error);
+                setLoading(false); // Stop loading if there's an error
+            }
+        };
+
+        fetchSendbirdCredentials();
+    }, []);
+
+    if (loading) {
+        return <div>Loading Chat Widget...</div>;
+    }
 
     return (
-        <ChatAiWidget
-            applicationId={APP_ID} // Replace with your Sendbird Application ID
-            botId={BOT_ID} // Replace with your Bot ID
-            userId={userId}
-            sessionToken={sessionToken}
-        />
+        appId && botId ? (
+            <ChatAiWidget
+                applicationId={appId}
+                botId={botId}
+                userId={userId}
+                sessionToken={sessionToken}
+                onFunctionCall={handleFunctionCall}
+            />
+        ) : (
+            <div>Error loading chat widget. Please try again later.</div>
+        )
     );
+};
+
+const handleFunctionCall = async (functionName, parameters) => {
+    const api = import.meta.env.VITE_API_URL;
+    const sessionToken = localStorage.getItem('authToken');
+    const userId = localStorage.getItem('userId');
+    console.log("Function called:", functionName);
+    console.log("Parameters:", parameters);
+    if (functionName === 'trackOrders') {
+        try {
+            const response = await fetch(`${api}/sendbird/getOrders`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionToken}`
+                },
+                body: JSON.stringify({ userId, sessionToken })
+            });
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error tracking orders:', error);
+            return { error: 'Failed to track orders' };
+        }
+    }
+    // Handle other function calls if needed
 };
 
 export default ChatbotWidget;
