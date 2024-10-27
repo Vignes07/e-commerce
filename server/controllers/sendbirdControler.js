@@ -5,6 +5,8 @@ const Order = require("../models/orderSchema");
 exports.trackOrder = async (req, res) => {
     const { userId, authToken } = req.body; // Get userId and authToken from the request body
 
+    console.log(userId, authToken)
+
     // Verify the token
     try {
         // Verify the token using the provided authToken

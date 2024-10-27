@@ -4,6 +4,6 @@ const {
     trackOrder
 } = require('../controllers/sendbirdControler');
 
-router.post('sendbird/getOrders/', trackOrder);
+router.post('/getOrders', trackOrder);
 
 module.exports = router;

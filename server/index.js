@@ -4,6 +4,7 @@ const connectDB = require('./config/database.js');
 const authRoutes = require('./routes/authRoutes.js');
 const cartRoutes = require('./routes/cartRoutes.js');
 const orderRoutes = require('./routes/orderRoutes.js');
+const sendbirdRoutes = require('./routes/sendbirdRoutes.js');
 require('dotenv').config();
 
 const app = express();
@@ -20,6 +21,7 @@ connectDB().then(() => console.log("DB connected"));
 app.use('/auth', authRoutes);
 app.use('/cart', cartRoutes)
 app.use('/orders', orderRoutes)
+app.use('/sendbird', sendbirdRoutes)
 
 // Start Server
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
