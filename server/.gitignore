@@ -1,0 +1,31 @@
+# Node.js dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+
+# npm and Yarn lock files
+package-lock.json
+yarn.lock
+
+# IDE and editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.bak
+
+# Coverage folder for tests
+coverage/

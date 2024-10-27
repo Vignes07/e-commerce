@@ -1,0 +1,202 @@
+.productdisplay{
+    display: flex;
+    margin: 0px 170px;
+}
+
+.productdisplay-left{
+    display: flex;
+    gap: 17px;
+}
+
+.productdisplay-img-list{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.productdisplay-img-list img{
+    height: 163px;
+}
+
+.productdisplay-main-img{
+    width: 586px;
+    height: 700px;
+}
+
+.productdisplay-right{
+    margin: 0px 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+.productdisplay-right- h1{
+    color: #3d3d3d;
+    font-size: 40px;
+    font-weight: 700;
+}
+ 
+.productdisplay-right-stars{
+    display: flex;
+    align-items: center;
+    margin-top: 13px;
+    gap: 5px;
+    color: #1c1c1c;
+    font-size: 16px;
+}
+
+.productdisplay-right-prices{
+    display: flex;
+    margin: 40px  0px;
+    gap: 30px;
+    font-size: 24px;
+    font-weight: 700;
+}
+ 
+.productdisplay-right-prices-old{
+    color: #818181;
+    text-decoration: line-through;
+}
+
+.productdisplay-right-prices-new{
+    color: #ff4141;
+}
+
+.productdisplay-right-size h1{
+    margin-top: 55px;
+    color: #656565;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.productdisplay-right-sizes{
+    display: flex;
+    margin: 30px 0px;
+    gap: 20px;
+}
+
+.productdisplay-right-sizes div{
+    padding: 18px 24px;
+    background: #fbfbfb;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.productdisplay-right button{
+    padding: 20px 40px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background: #ff4141;
+    margin-bottom: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.productdisplay-right-category{
+    margin-top: 10px;
+}
+
+.productdisplay-right-category span{
+    font-weight: 600;
+}
+
+
+/* Responsive Styles */
+
+/* For tablets and smaller screens */
+@media only screen and (max-width: 768px) {
+    .productdisplay {
+        flex-direction: column;
+        margin: 0px 20px; /* Reduced margin */
+    }
+
+    .productdisplay-left {
+        margin-bottom: 20px;
+        gap: 10px; /* Reduced gap */
+    }
+
+    .productdisplay-img-list img {
+        height: 130px; /* Reduced image height */
+    }
+
+    .productdisplay-main-img {
+        width: 100%; /* Full width */
+        height: auto; /* Auto height for aspect ratio */
+    }
+
+    .productdisplay-right {
+        margin: 20px 0; /* Reduced margin */
+    }
+
+    .productdisplay-right h1 {
+        font-size: 32px; /* Reduced font size */
+    }
+
+    .productdisplay-right-prices {
+        flex-direction: column;
+        gap: 10px; /* Reduced gap */
+    }
+
+    .productdisplay-right-size h1 {
+        font-size: 18px; /* Reduced font size */
+    }
+
+    .productdisplay-right-sizes {
+        flex-direction: column;
+        gap: 10px; /* Reduced gap */
+    }
+
+    .productdisplay-right button {
+        width: 100%; /* Full width button */
+    }
+}
+
+/* For mobile devices */
+@media only screen and (max-width: 480px) {
+    .productdisplay {
+        margin: 0px 10px; /* Further reduced margin */
+    }
+
+    .productdisplay-left {
+        gap: 5px; /* Further reduced gap */
+    }
+
+    .productdisplay-img-list img {
+        height: 100px; /* Further reduced image height */
+    }
+
+    .productdisplay-main-img {
+        width: 100%; /* Full width */
+        height: auto; /* Auto height for aspect ratio */
+    }
+
+    .productdisplay-right {
+        margin: 10px 0; /* Further reduced margin */
+    }
+
+    .productdisplay-right h1 {
+        font-size: 24px; /* Further reduced font size */
+    }
+
+    .productdisplay-right-prices {
+        flex-direction: column;
+        gap: 5px; /* Further reduced gap */
+    }
+
+    .productdisplay-right-size h1 {
+        font-size: 16px; /* Further reduced font size */
+    }
+
+    .productdisplay-right-sizes {
+        flex-direction: column;
+        gap: 5px; /* Further reduced gap */
+    }
+
+    .productdisplay-right button {
+        width: 100%; /* Full width button */
+        padding: 15px; /* Reduced padding */
+    }
+}

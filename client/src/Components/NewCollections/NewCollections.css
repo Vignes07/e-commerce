@@ -1,0 +1,85 @@
+.newcollections{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 100px;
+}
+
+.newcollections h1{
+    color: #171717;
+    font-size: 50px;
+    font-weight: 600;
+}
+.newcollections hr{
+    width: 200px;
+    height: 6px;
+    border-radius: 10px;
+    background: #252525;
+}
+
+.newcollections-item{
+    margin-top: 50px;
+    display: flex;
+    gap: 30px;
+}
+
+.collections{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 50px;
+    gap: 30px;
+}
+
+
+/* Responsive Styles */
+
+/* For tablets and smaller screens */
+@media only screen and (max-width: 768px) {
+    .newcollections {
+        margin-bottom: 50px; /* Reduced margin */
+    }
+
+    .newcollections h1 {
+        font-size: 36px; /* Reduced font size */
+        text-align: center; /* Center align for smaller screens */
+    }
+
+    .newcollections hr {
+        width: 150px; /* Reduced width */
+    }
+
+    .newcollections-item {
+        flex-direction: column; /* Stack items vertically */
+        gap: 20px; /* Reduced gap */
+    }
+
+    .collections {
+        grid-template-columns: 1fr 1fr 1fr; /* 3 columns layout for tablets */
+    }
+}
+
+/* For mobile devices */
+@media only screen and (max-width: 480px) {
+    .newcollections {
+        margin-bottom: 30px; /* Further reduced margin */
+    }
+
+    .newcollections h1 {
+        font-size: 28px; /* Further reduced font size */
+        text-align: center; /* Ensure text is centered */
+    }
+
+    .newcollections hr {
+        width: 120px; /* Further reduced width */
+    }
+
+    .newcollections-item {
+        flex-direction: column; /* Stack items vertically */
+        gap: 15px; /* Further reduced gap */
+    }
+
+    .collections {
+        grid-template-columns: 1fr 1fr; /* 2 columns layout for mobile devices */
+    }
+}

@@ -1,0 +1,79 @@
+.descriptionbox{
+    margin: 120px 170px;
+}
+
+.descriptionbox-navigator{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.descriptionbox-nav-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    width: 171px;
+    height: 70px;
+    border: 1px solid #d0d0d0 ;
+}
+
+.descriptionbox-nav-box.fade{
+    background: #fbfbfb;
+    color: #555;
+}
+
+.descriptionbox-description{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border: 1px solid #d0d0d0;
+    padding: 48px;
+    padding-bottom: 70px;
+}
+
+
+
+/* Responsive Styles */
+
+/* For tablets and smaller screens */
+@media only screen and (max-width: 768px) {
+    .descriptionbox {
+        margin: 80px 40px; /* Reduced margin for smaller screens */
+    }
+
+    .descriptionbox-nav-box {
+        font-size: 14px; /* Slightly smaller font size */
+        width: 150px; /* Reduced width */
+        height: 60px; /* Reduced height */
+    }
+
+    .descriptionbox-description {
+        padding: 30px; /* Reduced padding */
+        padding-bottom: 50px; /* Reduced padding-bottom */
+    }
+}
+
+/* For mobile devices */
+@media only screen and (max-width: 480px) {
+    .descriptionbox {
+        margin: 40px 20px; /* Further reduced margin for mobile devices */
+    }
+
+    .descriptionbox-navigator {
+        flex-direction: column; /* Stack items vertically on mobile */
+        gap: 10px; /* Add some space between items */
+    }
+
+    .descriptionbox-nav-box {
+        font-size: 12px; /* Smaller font size for mobile */
+        width: 100%; /* Full width for better responsiveness */
+        height: 50px; /* Further reduced height */
+    }
+
+    .descriptionbox-description {
+        padding: 20px; /* Further reduced padding */
+        padding-bottom: 40px; /* Further reduced padding-bottom */
+        gap: 15px; /* Reduced gap between elements */
+    }
+}

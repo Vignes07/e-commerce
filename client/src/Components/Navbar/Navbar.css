@@ -1,0 +1,203 @@
+*{
+    user-select: none;
+}
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    padding: 16px;
+    box-shadow: 0 1px 3px -2px black;
+}
+
+.nav-logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo p{
+    font-size: 38px;
+    color: black;
+    font-weight: 600 ;
+}
+
+.nav-menu{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    list-style: none;
+    color: #626262;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.nav-menu li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.nav-menu hr{
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+.nav-login-cart{
+    display: flex;
+    align-items: center;
+    gap: 45px;
+}
+
+.nav-login-cart button{
+    width: 157px;
+    height: 50px;
+    outline: none;
+    border: 1px solid #7A7A7A;
+    border-radius: 75px;
+    color: #515151;
+    font-size: 20px;
+    font-weight: 500;
+    background: white;
+    cursor: pointer;
+}
+
+.nav-login-cart  button:active{
+    background: #f3f3f3;
+}
+
+.nav-cart-count{
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -35px;
+    margin-left: -55px;
+    border-radius: 11px;
+    font-size: 14px;
+    background: red;
+    color: white;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0,
+    'wght' 350,
+    'GRAD' 0,
+    'opsz' 30;
+    font-size: 44px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Responsive Styles */
+
+/* For tablets and smaller screens */
+@media only screen and (max-width: 768px) {
+    .navbar {
+        padding: 10px; /* Reduced padding */
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .nav-logo p {
+        font-size: 28px; /* Reduced font size */
+    }
+
+    .nav-menu {
+        gap: 30px; /* Reduced gap */
+        font-size: 18px; /* Slightly smaller font size */
+    }
+
+    .nav-login-cart {
+        gap: 30px; /* Reduced gap */
+    }
+
+    .nav-login-cart button {
+        /*width: 120px; !* Reduced button width *!*/
+        height: 40px; /* Reduced button height */
+        font-size: 18px; /* Slightly smaller font size */
+    }
+
+    .nav-cart-count {
+        width: 18px; /* Reduced size */
+        height: 18px;
+        font-size: 12px; /* Smaller font size */
+        margin-top: -30px; /* Adjusted margin */
+        margin-left: -40px; /* Adjusted margin */
+    }
+}
+
+/* For mobile devices */
+@media only screen and (max-width: 480px) {
+    .navbar {
+        padding: 5px; /* Further reduced padding */
+    }
+
+    .nav-logo {
+        flex-direction: column; /* Stack logo and text vertically */
+        gap: 5px; /* Reduced gap */
+    }
+
+    .nav-logo p {
+        font-size: 24px; /* Smaller font size */
+    }
+
+    .nav-menu {
+        display: none; /* Hide menu items for mobile */
+    }
+
+    .nav-login-cart {
+        gap: 20px; /* Further reduced gap */
+    }
+
+    .nav-login-cart button {
+        /*width: 100px; !* Further reduced button width *!*/
+        height: 35px; /* Further reduced button height */
+        font-size: 16px; /* Smaller font size */
+    }
+
+    .nav-cart-count {
+        width: 16px; /* Further reduced size */
+        height: 16px;
+        font-size: 10px; /* Smaller font size */
+        margin-top: -25px; /* Adjusted margin */
+        margin-left: -35px; /* Adjusted margin */
+    }
+}
+
+.nav-account {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: fit-content;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: -60px;
+}
+
+.dropdown-content .username {
+    padding: 8px 16px;
+    font-size: 24px;
+    background-color: #f1f1f1;
+}
+
+.dropdown-content button {
+    padding: 8px 16px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    align-self: center;
+}
+
+.dropdown-content button:hover {
+    background-color: #ddd;
+}
