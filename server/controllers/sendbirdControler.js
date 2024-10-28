@@ -9,7 +9,7 @@ exports.trackOrder = async (req, res) => {
 
         const orders = await Order.findOne({ userId: new ObjectId(userId) });
 
-        console.log(orders);
+        console.log(userId, orderId);
 
         if (orders && orders.orders.length > 0) {
             res.send(orders.orders);
