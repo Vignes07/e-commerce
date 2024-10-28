@@ -6,8 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="e6223785-f7c4-4830-b4be-e04e944d7675" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Chatbot/Chatbot.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/ChatbotWidget/ChatbotWidget.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/ChatbotWidget/ChatbotWidget.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/sendbirdControler.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/sendbirdControler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/sendbirdRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/sendbirdRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +27,7 @@
         <option value="package.json" />
         <option value="JSX File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -42,6 +50,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Vignes/VSCode/e-commerce/client",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,7 +83,7 @@
       <updated>1730049220661</updated>
       <workItem from="1730049221780" duration="24000" />
       <workItem from="1730049364785" duration="23000" />
-      <workItem from="1730049492420" duration="16240000" />
+      <workItem from="1730049492420" duration="30712000" />
     </task>
     <servers />
   </component>

@@ -12,6 +12,8 @@
   "dependencies": {
     "@sendbird/chat": "^4.14.6",
     "@sendbird/chat-ai-widget": "^1.8.4",
+    "@sendbird/uikit-react": "^3.15.7",
+    "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
