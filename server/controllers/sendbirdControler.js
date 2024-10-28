@@ -5,11 +5,11 @@ const Order = require("../models/orderSchema");
 exports.trackOrder = async (req, res) => {
     const { userId, orderId } = req.body; // Get userId and authToken from the request body
 
+    console.log(userId, orderId);
+
     try {
 
         const orders = await Order.findOne({ userId: new ObjectId(userId) });
-
-        console.log(userId, orderId);
 
         if (orders && orders.orders.length > 0) {
             res.send(orders.orders);
