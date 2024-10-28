@@ -12,7 +12,6 @@ const ChatbotWidget = () => {
     // Retrieve session token and user ID from local storage
     const sessionToken = localStorage.getItem('authToken');
     const storedUserId = localStorage.getItem('userId');
-
     const api = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
@@ -33,6 +32,28 @@ const ChatbotWidget = () => {
         fetchSendbirdCredentials();
     }, [api, storedUserId]);
 
+    const callSendbirdFunction = async (userId, sessionToken) => {
+        console.log('Calling Sendbird function with:', { userId, sessionToken });
+        try {
+            const response = await fetch(`${api}/sendbird/getOrders`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId, sessionToken }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to call Sendbird function');
+            }
+
+            const result = await response.json();
+            console.log('Sendbird function result:', result);
+        } catch (error) {
+            console.error('Error calling Sendbird function:', error);
+        }
+    };
+
     if (loading) {
         return <div>Loading Chat Widget...</div>;
     }
@@ -44,27 +65,12 @@ const ChatbotWidget = () => {
                 botId={botId}
                 userId={userId}
                 sessionToken={sessionToken}
-                onMessageSend={(message) => {
-                    if (message === 'track my order') {
-                        // Call the function in the Sendbird dashboard
-                        fetch(`${api}/sendbird/getOrders`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                // 'Authorization': `Bearer ${sessionToken}`
-                            },
-                            body: JSON.stringify({
-                                userId: storedUserId,
-                                token: sessionToken
-                            })
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                console.log('Function call response:', data);
-                            })
-                            .catch(error => {
-                                console.error('Error making function call:', error);
-                            });
+                onMessageSend={async (message) => {
+                    console.log('Message sent:', message);
+                    // Check if the message should trigger the function call
+                    if (message.includes('track my order')) {
+                        console.log('Tracking order for user:', userId);
+                        await callSendbirdFunction(userId, sessionToken);
                     }
                 }}
             />
