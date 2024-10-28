@@ -3,21 +3,47 @@ const { ObjectId } = require('mongodb');
 const Order = require("../models/orderSchema");
 
 exports.trackOrder = async (req, res) => {
-    const { userId, orderId } = req.body; // Get userId and authToken from the request body
-
-    console.log(userId, orderId);
+    const { userId, orderId } = req.body;
 
     try {
+        const order = await Order.findOne({ userId: new ObjectId(userId), 'orders._id': orderId });
 
-        const orders = await Order.findOne({ userId: new ObjectId(userId) });
-
-        if (orders && orders.orders.length > 0) {
-            res.send(orders.orders);
+        if (order) {
+            const selectedOrder = order.orders.find(o => o._id.toString() === orderId);
+            res.json(selectedOrder || { message: "Order not found" });
         } else {
-            res.status(404).json({ message: "No products found" });
+            res.status(404).json({ message: "No orders found for this user" });
         }
-    } catch (err) {
-        console.error("Error verifying token:", err); // Log detailed error
-        return res.status(401).json({ message: 'Invalid token, authorization denied' });
+    } catch (error) {
+        console.error("Error tracking order:", error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+exports.issueSessionToken = async (req, res) => {
+    const { userId } = req.body;
+    const appId = process.env.SENDBIRD_APP_ID;
+    const apiToken = process.env.SENDBIRD_API_TOKEN;
+    const url = `https://api-${appId}.sendbird.com/v3/users/${userId}/token`;
+    const expiryDuration = 10 * 60 * 1000;
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Api-Token': apiToken,
+            },
+            body: JSON.stringify({ expires_at: Date.now() + expiryDuration }),
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to issue session token');
+        }
+
+        res.json({ token: data.token });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
 };

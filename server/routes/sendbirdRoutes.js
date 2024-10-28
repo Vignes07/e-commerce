@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const {
-    trackOrder
-} = require('../controllers/sendbirdControler');
+const { trackOrder, issueSessionToken } = require('../controllers/sendbirdControler');
 
-router.post('/getOrders/:userId/:orderId', trackOrder);
+router.post('/issue-session-token', issueSessionToken);
+router.post('/track-order', trackOrder);
 
 module.exports = router;
