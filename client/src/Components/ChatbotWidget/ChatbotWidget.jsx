@@ -2,46 +2,55 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ChatAiWidget } from '@sendbird/chat-ai-widget';
 import '@sendbird/chat-ai-widget/dist/style.css';
 import { AuthContext } from '../../Context/AuthContext.jsx';
+import { fetchSendbirdCredentials, issueSessionToken } from '../../utils/sendbirdUtils.js';
 
 const ChatbotWidget = () => {
     const [appId, setAppId] = useState('');
     const [botId, setBotId] = useState('');
     const { user } = useContext(AuthContext);
     const userId = user ? user._id : null;
-    const api = import.meta.env.VITE_API_URL;
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchSendbirdCredentials = async () => {
+        const fetchCredentials = async () => {
             try {
-                const response = await fetch(`${api}/api/sendbird-credentials`);
-                const data = await response.json();
+                const data = await fetchSendbirdCredentials();
                 setAppId(data.appId);
                 setBotId(data.botId);
-                setLoading(false);
             } catch (error) {
                 console.error('Error fetching Sendbird credentials:', error);
+            } finally {
                 setLoading(false);
             }
         };
-        fetchSendbirdCredentials();
+        fetchCredentials();
     }, []);
 
-    const configureSession = () => ({
-        onSessionTokenRequired: (resolve, reject) => {
-            fetch(`${api}/sendbird/issue-session-token`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId })
-            })
-                .then(response => response.json())
-                .then(data => resolve(data.token))
-                .catch(error => reject(error));
-        },
-        onSessionRefreshed: () => console.log("Session refreshed successfully."),
-        onSessionError: (err) => console.error("Session error:", err),
-        onSessionClosed: () => console.log("Session closed.")
-    });
+    const configureSession = () => {
+        console.log("Configuring session...", userId); // Log for debugging
+        return {
+            onSessionTokenRequired: async (resolve, reject) => {
+                console.log("Session token required..."); // Log when token is needed
+                try {
+                    console.log("Current userId:", userId); // Log userId
+                    const token = await issueSessionToken(userId);
+                    resolve(token);
+                } catch (error) {
+                    console.error('Error issuing session token:', error);
+                    reject(error);
+                }
+            },
+            onSessionRefreshed: () => {
+                console.log("Session refreshed successfully.");
+            },
+            onSessionError: (err) => {
+                console.error("Session error:", err);
+            },
+            onSessionClosed: () => {
+                console.log("Session closed.");
+            },
+        };
+    };
 
     if (loading) {
         return <div>Loading Chat Widget...</div>;

@@ -5,7 +5,7 @@ import { AuthContext } from '../Context/AuthContext';
 
 export const Login = () => {
     const navigate = useNavigate();
-    const { setIsAuthenticated, setUser } = useContext(AuthContext);
+    const { setIsAuthenticated, setUser, login } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -26,17 +26,19 @@ export const Login = () => {
 
             // console.log("Response from server:", data);
 
-            if (response.ok && data.token) {
-                localStorage.setItem('authToken', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
+            await login(data)
 
-                setIsAuthenticated(true);
-                setUser(data.user); // Update user state
-                navigate('/'); // Redirect to home page
-            } else {
-                console.error("Error from server:", data.message);
-                setErrorMessage(data.message || 'Login failed');
-            }
+            // if (response.ok && data.token) {
+            //     localStorage.setItem('authToken', data.token);
+            //     localStorage.setItem('user', JSON.stringify(data.user));
+            //
+            //     setIsAuthenticated(true);
+            //     setUser(data.user); // Update user state
+            //     navigate('/'); // Redirect to home page
+            // } else {
+            //     console.error("Error from server:", data.message);
+            //     setErrorMessage(data.message || 'Login failed');
+            // }
         } catch (error) {
             console.error("Error during login:", error);
             alert('An error occurred during login');

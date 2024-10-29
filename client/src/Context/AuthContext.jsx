@@ -1,28 +1,41 @@
+// /client/src/Context/AuthContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
+import { createSendbirdUser } from "../utils/sendbirdUtils.js"; // Import function to create Sendbird user
 
 // Create the AuthContext
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState(null); // Add user state
+    const [user, setUser] = useState(null);
 
-    // Load authentication status from localStorage or token
     useEffect(() => {
-        const token = localStorage.getItem('authToken'); // Assuming a token is stored after login
+        const token = localStorage.getItem('authToken');
         const userData = localStorage.getItem('user');
-
-        if (token) {
+        if (token && userData) {
             setIsAuthenticated(true);
-            if (userData) {
-                setUser(JSON.parse(userData)); // Parse and set user data
-            }
+            setUser(JSON.parse(userData));
         }
     }, []);
 
-    const login = (userData) => {
+    const login = async (userData) => {
+        // Save user data and authentication status
         setIsAuthenticated(true);
         setUser(userData);
+
+        // Save user data to localStorage
+        localStorage.setItem('authToken', userData.token); // Assuming `userData` includes the token
+        localStorage.setItem('user', JSON.stringify(userData));
+
+        console.log("hgvg")
+
+        // Create a new Sendbird user whenever a user logs in
+        try {
+            await createSendbirdUser(userData._id, userData.name); // Pass user ID and name
+            console.log("Sendbird user created successfully.");
+        } catch (error) {
+            console.error("Error creating Sendbird user:", error);
+        }
     };
 
     const logout = () => {
@@ -32,7 +45,6 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
-    // Provide the context to children components
     return (
         <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser, login, logout }}>
             {children}

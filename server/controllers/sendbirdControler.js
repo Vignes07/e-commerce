@@ -22,6 +22,7 @@ exports.trackOrder = async (req, res) => {
 
 exports.issueSessionToken = async (req, res) => {
     const { userId } = req.body;
+    console.log(userId)
     const appId = process.env.SENDBIRD_APP_ID;
     const apiToken = process.env.SENDBIRD_API_TOKEN;
     const url = `https://api-${appId}.sendbird.com/v3/users/${userId}/token`;
