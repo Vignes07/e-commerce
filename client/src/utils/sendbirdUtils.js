@@ -1,9 +1,5 @@
-// /client/src/utils/sendbirdUtils.js
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
-/**
- * Fetches Sendbird credentials (appId).
- */
 export const fetchSendbirdCredentials = async () => {
     const response = await fetch(`${apiBaseUrl}/api/sendbird-credentials`);
     if (!response.ok) throw new Error("Failed to fetch Sendbird credentials");
@@ -11,9 +7,6 @@ export const fetchSendbirdCredentials = async () => {
     return await response.json();
 };
 
-/**
- * Issues a session token for a specific user ID.
- */
 export const issueSessionToken = async (userId) => {
     const response = await fetch(`${apiBaseUrl}/sendbird/issue-session-token`, {
         method: 'POST',
@@ -29,7 +22,6 @@ export const issueSessionToken = async (userId) => {
 };
 
 export const createSendbirdUser = async (userId, nickname) => {
-    console.log("Hello")
     const response = await fetch(`${apiBaseUrl}/sendbird/create-user`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

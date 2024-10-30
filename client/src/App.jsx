@@ -35,7 +35,7 @@ function App() {
                 <Route path='/signup' element={<Signup/>}/>
                 <Route path='/login' element={<Login/>}/>
             </Routes>
-            <ChatbotWidget />
+            {/*<ChatbotWidget />*/}
             {!noNavbarRoutes.includes(location.pathname) && <Footer/>}
         </div>
     );

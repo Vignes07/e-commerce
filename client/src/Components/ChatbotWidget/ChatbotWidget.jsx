@@ -9,7 +9,16 @@ const ChatbotWidget = () => {
     const [botId, setBotId] = useState('');
     const { user } = useContext(AuthContext);
     const userId = user ? user._id : null;
+    const authToken = localStorage.getItem('authToken');
     const [loading, setLoading] = useState(true);
+
+    // const [sessionToken, setSessionToken] = useState("")
+
+
+
+    // useEffect(() => {
+    //     setSessionToken(authToken)
+    // }, [authToken]);
 
     useEffect(() => {
         const fetchCredentials = async () => {
@@ -26,31 +35,26 @@ const ChatbotWidget = () => {
         fetchCredentials();
     }, []);
 
-    const configureSession = () => {
-        console.log("Configuring session...", userId); // Log for debugging
-        return {
-            onSessionTokenRequired: async (resolve, reject) => {
-                console.log("Session token required..."); // Log when token is needed
-                try {
-                    console.log("Current userId:", userId); // Log userId
-                    const token = await issueSessionToken(userId);
-                    resolve(token);
-                } catch (error) {
-                    console.error('Error issuing session token:', error);
-                    reject(error);
-                }
-            },
-            onSessionRefreshed: () => {
-                console.log("Session refreshed successfully.");
-            },
-            onSessionError: (err) => {
-                console.error("Session error:", err);
-            },
-            onSessionClosed: () => {
-                console.log("Session closed.");
-            },
-        };
-    };
+    // useEffect(() => {
+    //     issueSessionToken(userId).then(token => setSessionToken(token));
+    // }, [userId]);
+
+    const configureSession = () => ({
+        onSessionTokenRequired: (resolve, reject) => {
+            issueSessionToken(userId)
+                .then((token) => resolve(token))
+                .catch((err) => reject(err));
+        },
+        onSessionRefreshed: () => {
+            console.log("Session refreshed successfully.");
+        },
+        onSessionError: (err) => {
+            console.error("Session error:", err);
+        },
+        onSessionClosed: () => {
+            console.log("Session closed.");
+        },
+    });
 
     if (loading) {
         return <div>Loading Chat Widget...</div>;
@@ -58,11 +62,12 @@ const ChatbotWidget = () => {
 
     return (
         <div>
-            {appId && botId ? (
+            {appId && botId && userId && authToken ? (
                 <ChatAiWidget
                     applicationId={appId}
                     botId={botId}
                     userId={userId}
+                    sessionToken={localStorage.getItem('authToken')}
                     configureSession={configureSession}
                 />
             ) : (

@@ -7,12 +7,13 @@ export const Signup = () => {
 
     const navigate = useNavigate()
     const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:5000/signup", { name, email, password })
+        axios.post("http://localhost:5000/auth/signup", { name, phone, email, password })
             .then(result => {console.log(result)
                 navigate("/login")
             })
@@ -26,6 +27,7 @@ export const Signup = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="loginsignup-fields">
                         <input type="text" placeholder="Your Name" onChange={(e) => setName(e.target.value)}/>
+                        <input type="tel" placeholder="Your Phone No" onChange={(e) => setPhone(e.target.value)}/>
                         <input type="email" placeholder="Email Address" onChange={(e) => setEmail(e.target.value)}/>
                         <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                     </div>

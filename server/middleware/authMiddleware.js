@@ -8,11 +8,12 @@ const authMiddleware = (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded; // Attach user data to the request object
+        req.user = jwt.verify(token, process.env.JWT_SECRET); // Attach user data to the request object
         next();
     } catch (error) {
-        console.error("Invalid token:", error);  // Log error for debugging
+        if (error.name === 'TokenExpiredError') {
+            return res.status(401).json({ message: 'Session expired, please log in again' });
+        }
         return res.status(401).json({ message: 'Invalid token' });
     }
 };

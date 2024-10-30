@@ -6,11 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="e6223785-f7c4-4830-b4be-e04e944d7675" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/ChatbotWidget/ChatbotWidget.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/ChatbotWidget/ChatbotWidget.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Context/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Context/AuthContext.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Pages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Pages/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Pages/Shop.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Pages/Shop.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Pages/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Pages/Signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/utils/sendbirdUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/sendbirdUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/authController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/sendbirdControler.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/sendbirdControler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/middleware/authMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/authMiddleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/userSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/userSchema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/sendbirdRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/sendbirdRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package.json" />
-        <option value="JSX File" />
         <option value="CSS File" />
+        <option value="JSX File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -83,7 +92,7 @@
       <updated>1730049220661</updated>
       <workItem from="1730049221780" duration="24000" />
       <workItem from="1730049364785" duration="23000" />
-      <workItem from="1730049492420" duration="44957000" />
+      <workItem from="1730049492420" duration="64879000" />
     </task>
     <servers />
   </component>

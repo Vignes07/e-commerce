@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CSS/Loginsignup.css';
 import { AuthContext } from '../Context/AuthContext';
+import {createSendbirdUser} from "../utils/sendbirdUtils.js";
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -14,8 +15,6 @@ export const Login = () => {
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            // console.log("Attempting to login...");
-
             const response = await fetch(`${api}/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -24,21 +23,28 @@ export const Login = () => {
 
             const data = await response.json();
 
-            // console.log("Response from server:", data);
+            const expirationDate = new Date();
+            expirationDate.setSeconds(expirationDate.getMonth() + 1);
+            localStorage.setItem('tokenExpiration', expirationDate.toISOString());
 
-            await login(data)
+            if (response.ok && data.token) {
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
 
-            // if (response.ok && data.token) {
-            //     localStorage.setItem('authToken', data.token);
-            //     localStorage.setItem('user', JSON.stringify(data.user));
-            //
-            //     setIsAuthenticated(true);
-            //     setUser(data.user); // Update user state
-            //     navigate('/'); // Redirect to home page
-            // } else {
-            //     console.error("Error from server:", data.message);
-            //     setErrorMessage(data.message || 'Login failed');
-            // }
+                try {
+                    await createSendbirdUser(data.user._id, data.user.name);
+                    // console.log("Sendbird user created successfully.");
+                } catch (error) {
+                    console.error("Error creating Sendbird user:", error);
+                }
+
+                setIsAuthenticated(true);
+                setUser(data.user);
+                navigate('/');
+            } else {
+                console.error("Error from server:", data.message);
+                setErrorMessage(data.message || 'Login failed');
+            }
         } catch (error) {
             console.error("Error during login:", error);
             alert('An error occurred during login');

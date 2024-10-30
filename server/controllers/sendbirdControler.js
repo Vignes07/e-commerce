@@ -20,6 +20,55 @@ exports.trackOrder = async (req, res) => {
     }
 };
 
+exports.createUser = async (req, res) => {
+    const { userId, nickname, profile_url } = req.body;
+
+    try {
+        const checkUserResponse = await fetch(`https://api-EE6FCBB4-F083-485D-9FA4-478D7CFC41F6.sendbird.com/v3/users/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Api-Token': process.env.SENDBIRD_API_TOKEN
+            }
+        });
+
+        if (checkUserResponse.ok) {
+            const existingUser = await checkUserResponse.json();
+            console.log("User already exists:", existingUser);
+            return res.status(200).json({ message: 'User already exists', user: existingUser });
+        }
+
+        const body = JSON.stringify({
+            user_id: userId,
+            nickname,
+            profile_url
+        });
+
+        const createUserResponse = await fetch(`https://api-EE6FCBB4-F083-485D-9FA4-478D7CFC41F6.sendbird.com/v3/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Api-Token': process.env.SENDBIRD_API_TOKEN,
+                'Content-Length': body.length
+            },
+            body,
+        });
+
+        if (!createUserResponse.ok) {
+            const errorData = await createUserResponse.json();
+            return res.status(400).json({ message: 'Failed to create user', error: errorData });
+        }
+
+        const newUser = await createUserResponse.json();
+        res.status(200).json(newUser);
+
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ message: 'Failed to create Sendbird user', error });
+    }
+};
+
+
 exports.issueSessionToken = async (req, res) => {
     const { userId } = req.body;
     console.log(userId)
