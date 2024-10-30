@@ -98,3 +98,10 @@ exports.issueSessionToken = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+exports.sendbirdCredentials = async (req, res) => {
+    res.json({
+        appId: process.env.SENDBIRD_APP_ID,
+        botId: process.env.SENDBIRD_BOT_ID,
+    });
+}
