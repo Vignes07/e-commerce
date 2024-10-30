@@ -11,7 +11,7 @@ exports.trackOrder = async (req, res) => {
 
         if (order) {
             const selectedOrder = order.orders.find(o => o._id.toString() === orderId);
-            res.json(selectedOrder.productId, selectedOrder.quantity, selectedOrder.totalPrice, selectedOrder.deliveryDate || { message: "Order not found" });
+            res.json(selectedOrder || { message: "Order not found" });
         } else {
             res.status(404).json({ message: "No orders found for this user" });
         }
