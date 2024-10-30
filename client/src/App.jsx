@@ -18,6 +18,7 @@ function App() {
     const location = useLocation();
 
     const noNavbarRoutes = ['/login', '/signup'];
+    const noChatbotRoutes = ['/login', '/signup']; // Define routes where the Chatbot should not be displayed
 
     return (
         <div>
@@ -35,7 +36,8 @@ function App() {
                 <Route path='/signup' element={<Signup/>}/>
                 <Route path='/login' element={<Login/>}/>
             </Routes>
-            {/*<ChatbotWidget />*/}
+            {/* Display ChatbotWidget if not on login or signup page */}
+            {!noChatbotRoutes.includes(location.pathname) && <ChatbotWidget />}
             {!noNavbarRoutes.includes(location.pathname) && <Footer/>}
         </div>
     );

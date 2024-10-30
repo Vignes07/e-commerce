@@ -1,7 +1,7 @@
 const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 export const fetchSendbirdCredentials = async () => {
-    const response = await fetch(`${apiBaseUrl}/api/sendbird-credentials`);
+    const response = await fetch(`${apiBaseUrl}/sendbird/sendbird-credentials`);
     if (!response.ok) throw new Error("Failed to fetch Sendbird credentials");
 
     return await response.json();
