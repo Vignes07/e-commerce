@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e6223785-f7c4-4830-b4be-e04e944d7675" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Pages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Pages/Login.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/sendbirdControler.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/sendbirdControler.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +79,7 @@
       <updated>1730049220661</updated>
       <workItem from="1730049221780" duration="24000" />
       <workItem from="1730049364785" duration="23000" />
-      <workItem from="1730049492420" duration="65625000" />
+      <workItem from="1730049492420" duration="66156000" />
     </task>
     <servers />
   </component>

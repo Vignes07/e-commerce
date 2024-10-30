@@ -24,7 +24,7 @@ export const Login = () => {
             const data = await response.json();
 
             const expirationDate = new Date();
-            expirationDate.setSeconds(expirationDate.getMonth() + 1);
+            expirationDate.setSeconds(expirationDate.getDate() + 30);
             localStorage.setItem('tokenExpiration', expirationDate.toISOString());
 
             if (response.ok && data.token) {
