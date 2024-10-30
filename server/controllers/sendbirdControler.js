@@ -3,10 +3,11 @@ const { ObjectId } = require('mongodb');
 const Order = require("../models/orderSchema");
 
 exports.trackOrder = async (req, res) => {
-    const { userId, orderId } = req.body;
+    const { userId } = req.params;
+    const { orderId } = req.body;
 
     try {
-        const order = await Order.findOne({ userId: new ObjectId(userId), 'orders._id': orderId });
+        const order = await Order.findOne({ userId: new ObjectId(userId)});
 
         if (order) {
             const selectedOrder = order.orders.find(o => o._id.toString() === orderId);
